@@ -1,0 +1,10 @@
+COOKIES
+
+<script>
+    let name = 'by client';
+    let age = Math.random();
+    let path = '/cookie_storage'
+
+    let my_cookie = `${encodeURIComponent(name)}=${encodeURIComponent(age)}; path=${path}`;
+    window.document.cookie = my_cookie;
+</script>

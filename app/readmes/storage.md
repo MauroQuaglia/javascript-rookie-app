@@ -1,0 +1,1 @@
+* encodeURIComponent per nome e valore del cookie.
