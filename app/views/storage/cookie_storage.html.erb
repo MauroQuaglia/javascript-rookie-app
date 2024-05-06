@@ -1,11 +1,19 @@
-COOKIES
-
+<div id="set_cookie">Set Cookie</div>
 <script>
-    let name = 'by client';
-    let age = Math.random();
-    let path = '/cookie_storage'
-    let domain = "localhost" // Se espressamente impostato dovrebbe rendere il cookie accessibile anche ai sottodomini.
+    document.querySelector('#set_cookie').addEventListener('click', () => {
+        let name = 'by client';
+        let age = Math.random();
+        let path = '/cookie_storage';
 
-    let my_cookie = `${encodeURIComponent(name)}=${encodeURIComponent(age)}; path=${path}; domain=${domain}`;
-    window.document.cookie = my_cookie;
+        // Se espressamente impostato dovrebbe rendere il cookie accessibile anche ai sottodomini.
+        let domain = "localhost";
+
+        // Teoricamente i cookie di sessione vengono cancellati quando si chiude il browser, ma in realtà dipende dalle impostazioni del browser.
+        // Se non imposto nulla, il cookie è di sessione, se imposto l'expire invece lo gestisco io.
+        let maxAge = (new Date(Date.now() + 60000)).toUTCString();
+
+        let onlyHttps = 'secure';
+
+        window.document.cookie = `${encodeURIComponent(name)}=${encodeURIComponent(age)}; path=${path}; domain=${domain}; expires=${maxAge}; ${onlyHttps};`;
+    })
 </script>

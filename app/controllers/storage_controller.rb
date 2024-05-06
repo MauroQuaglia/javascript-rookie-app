@@ -8,6 +8,8 @@ class StorageController < ApplicationController
     else
       cookies[:by_server] = 'javascript'
     end
+
+    cookies[:only] = { :value => "not editing in javascript", :http_only => true }
   end
 
 end
