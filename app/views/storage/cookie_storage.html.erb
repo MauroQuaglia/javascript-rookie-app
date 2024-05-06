@@ -4,7 +4,8 @@ COOKIES
     let name = 'by client';
     let age = Math.random();
     let path = '/cookie_storage'
+    let domain = "localhost" // Se espressamente impostato dovrebbe rendere il cookie accessibile anche ai sottodomini.
 
-    let my_cookie = `${encodeURIComponent(name)}=${encodeURIComponent(age)}; path=${path}`;
+    let my_cookie = `${encodeURIComponent(name)}=${encodeURIComponent(age)}; path=${path}; domain=${domain}`;
     window.document.cookie = my_cookie;
 </script>
