@@ -1,0 +1,9 @@
+<a id="set_item" href="#">Set Item in IndexedDB</a>
+<hr />
+<a id="get_item" href="#">Get Item from IndexedDB</a>
+<script>
+    document.querySelector('#set_item').addEventListener('click', (event) => {
+        let openRequest = indexedDB.open('foods', 1);
+        event.preventDefault();
+    })
+</script>

@@ -12,4 +12,16 @@ class StorageController < ApplicationController
     cookies[:only] = { :value => "not editing in javascript", :http_only => true }
   end
 
+  def local_storage
+    # Si può solo impostare lato cliente tramite JavaScript.
+  end
+
+  def session_storage
+    # Si può solo impostare lato cliente tramite JavaScript.
+  end
+
+  def indexed_db
+
+  end
+
 end

@@ -1,0 +1,18 @@
+<a id="set_item" href="#">Set Item in sessionStorage</a>
+<hr />
+<a id="get_item" href="#">Get Item from sessionStorage</a>
+<script>
+    document.querySelector('#set_item').addEventListener('click', (event) => {
+        window.sessionStorage.setItem('MQ-1', '45');
+
+        let my_obj = {name: 'Mauro', surname: 'Quaglia'};
+        window.sessionStorage.setItem('MQ-2', JSON.stringify(my_obj));
+
+        event.preventDefault();
+    })
+
+    document.querySelector('#get_item').addEventListener('click', (event) => {
+        alert(window.sessionStorage.getItem('MQ-2'));
+        event.preventDefault();
+    })
+</script>
