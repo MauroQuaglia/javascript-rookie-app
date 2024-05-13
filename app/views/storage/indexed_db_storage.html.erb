@@ -1,9 +1,50 @@
-<a id="set_item" href="#">Set Item in IndexedDB</a>
-<hr />
-<a id="get_item" href="#">Get Item from IndexedDB</a>
+<a id="set_foods" href="#">Set Food</a>
+
+<!-- We can also use async/await with the help of a promise-based wrapper, like https://github.com/jakearchibald/idb -->
+<!-- Di base l'indexedDB funziona a callback perché le promise sono nate dopo! -->
 <script>
-    document.querySelector('#set_item').addEventListener('click', (event) => {
+    document.querySelector('#set_foods').addEventListener('click', (event) => {
         let openRequest = indexedDB.open('foods', 1);
-        event.preventDefault();
+
+        openRequest.onsuccess = function (event) {
+            console.log(`Evento onsuccess con parametri: ${JSON.stringify(event, null, 2)}`);
+
+            let db = openRequest.result;
+
+            let transaction = db.transaction("foods", "readwrite");
+            let foods = transaction.objectStore("foods")
+            for (let i = 1; i <= 5; i++) {
+                let food = {name: `food-${i}`, calories: 100 * i, created: new Date().toUTCString()};
+                let request = foods.add(food);
+
+                request.onsuccess = function() {
+                    console.log(`food-${i} added to the store`);
+                };
+
+                request.onerror = function() {
+                    console.log(`food-${i} NOT added to the store`);
+                };
+            }
+        };
+
+        // Update o inizializzazione.
+        openRequest.onupgradeneeded = function (event) {
+            console.log(`Evento onupgradeneeded con parametri: ${JSON.stringify(event, null, 2)}`);
+
+            let db = openRequest.result;
+            switch (event.oldVersion) {
+                case 0:
+                    db.createObjectStore('foods', {keyPath: 'name'});
+                    break;
+                case 1:
+                    break;
+            }
+        };
+
+        openRequest.onerror = function (event) {
+            console.log(`Evento onerror con parametri: ${JSON.stringify(event, null, 2)}`);
+        };
+
+
     })
 </script>
