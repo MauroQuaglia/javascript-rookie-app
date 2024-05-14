@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Workers</title>
+	<script>
+        let worker = new Worker("../javascript/workers_2.js");
+        worker.postMessage('Ciao come stai?');
+	</script>
+</head>
+<body>
+CIAO
+</body>
+</html>

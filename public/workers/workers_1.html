@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Workers</title>
+	<!-- Blocca il broser -->
+	<!-- <script src="../javascript/workers_1.js"></script> -->
+	<script>
+        // Non blocca il browser!
+		// questo oggetto worker è definito nel thread principale e riceve messaggi dal worker stesso.
+        let worker = new Worker("../javascript/workers_1.js");
+        worker.addEventListener("message", (event) => {
+            console.log(`Messaggio ricevuto dal worker: ${event.data}`);
+        });
+	</script>
+</head>
+<body>
+CIAO
+</body>
+</html>
