@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Workers</title>
+</head>
+<style>
+    .work_button {
+        color: green;
+    }
+
+    .in_progress {
+        color: red;
+    }
+</style>
+<body>
+<button id="work" class="work_button">Start Work</button>
+<hr>
+
+<label for="first">X:</label>
+<input id="first" type="number">
+
+<label for="second">Y:</label>
+<input id="second" type="number">
+
+<button id="sum">SUM</button>
+
+<label for="result">=</label>
+<input id="result" type="number">
+
+<script>
+    let work = document.querySelector('#work');
+    work.addEventListener('click', () => {
+        if (work.classList[0] === 'work_button') {
+            work.classList.remove('work_button')
+            work.classList.add('in_progress')
+            work.textContent = 'In progress...'
+            work.disabled = true;
+
+            let worker = new Worker("../javascript/workers_3.js");
+            worker.addEventListener("message", (event) => {
+                work.classList.remove('in_progress')
+                work.classList.add('work_button')
+                work.textContent = 'Start Work'
+                work.disabled = false;
+            });
+        }
+    })
+
+    let sum = document.querySelector('#sum');
+    sum.addEventListener('click', () => {
+        let first = Number(document.querySelector('#first').value);
+        let second = Number(document.querySelector('#second').value);
+        document.querySelector('#result').value = (first + second);
+    })
+
+</script>
+</body>
+</html>
