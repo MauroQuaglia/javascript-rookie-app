@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Windows</title>
+	<script>
+        // NON PERMESSO
+        window.open('http://www.trovaprezzi.it/')
+	</script>
+</head>
+<body>
+<button id="my_button_1">Apri popup 1</button>
+<button id="my_button_2">Apri popup 2</button>
+<script>
+    my_button_1.onclick = () => {
+        window.open('https://www.trovaprezzi.it', 'X', 'menubar=no');
+    };
+
+    let params = 'scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=600,height=300,left=100,top=100';
+    my_button_2.onclick = () => {
+        window.open('https://www.trovaprezzi.it', 'test', params);
+    };
+</script>
+</body>
+</html>

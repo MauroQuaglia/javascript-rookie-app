@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Windows</title>
+</head>
+<body>
+<button id="my_button_2">Apri popup 2</button>
+<script>
+
+    my_button_2.onclick = () => {
+        // Possiamo mantenere un riferimento alla nuova finestra.
+        let newWin = window.open("about:blank", "hello", "width=200,height=200");
+		newWin.document.write("Hello, world!");
+        newWin.alert('CIAO');
+
+
+    };
+
+</script>
+</body>
+</html>
