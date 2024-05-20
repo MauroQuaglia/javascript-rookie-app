@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+	<title>Fetch</title>
+</head>
+<body>
+<script>
+    let promise = window.fetch('https://api.restful-api.dev/objects')
+    promise.then(
+        response => response.json()
+    ).catch(
+        response => console.log(`Status not 200. Response: [${response}]!`)
+    );
+    console.log(promise)
+</script>
+<script>
+    async function response() {
+        let response = await window.fetch('https://api.restful-api.dev/objects')
+        let json = undefined;
+
+        if (response.status === 200) {
+            json = await response.json();
+        } else {
+            console.log(`Status not 200. Response: [${response}]!`)
+        }
+        return json;
+    }
+
+    console.log(response())
+</script>
+<script>
+    async function response() {
+        let response = await window.fetch('https://api.restful-api.dev/objects')
+
+        if (response.status === 200) {
+            const reader = response.body.getReader();
+            while (true) {
+                const {done, value} = await reader.read();
+                if (done) {
+                    return value;
+                }
+                console.log(`Ricevuti ${value.length} bytes`);
+            }
+        } else {
+            console.log(`Status not 200. Response: [${response}]!`)
+        }
+
+    }
+
+    response();
+</script>
+</body>
+</html>
